@@ -1,0 +1,18 @@
+---
+description: Org Cursor rules live in the repo, never in personal Cursor Settings
+alwaysApply: true
+---
+
+# Org Cursor rules (not personal)
+
+ElectraMet Cursor playbooks belong in **this repository** under `.cursor/rules/*.mdc`
+so every engineer and every agent clone gets them. Do **not** create, update, or
+rely on Cursor Settings **personal / user** rules (`cursor_dialog` `scope=user`).
+
+- Add or change a playbook → edit `.cursor/rules/` in the matching repo and commit.
+- Openable-link → Canvas (`openable-link-canvas.mdc`) is an org file here (and
+  the sibling PLC / HMI / electramet-cloud / graft repos), not a private Settings list.
+- If a useful note only exists as a personal rule, copy it into `.cursor/rules/`
+  and stop using the personal copy.
+
+Do not call `cursor_dialog` with `scope=user` `action=add` or `update`.

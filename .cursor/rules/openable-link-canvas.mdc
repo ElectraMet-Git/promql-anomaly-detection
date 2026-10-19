@@ -1,0 +1,36 @@
+---
+description: When the user asks for an openable / Safari / browser link to a plan or HTML doc, deliver a Cursor Canvas URL — not a GitHub source view. Applies in every ElectraMet Cursor repo.
+alwaysApply: true
+---
+
+# Openable link → Cursor Canvas (all ElectraMet repos)
+
+When someone asks for a link they can **open and read** in Safari, Chrome, or the phone browser (phrases like “openable link”, “Safari link”, “link that opens”, “not GitHub code”, “readable page”), do **not** stop at a GitHub `blob` URL.
+
+Private GitHub repos show `.html` / `.md` as **source**. `raw.githubusercontent.com` is often `text/plain` or 404 without auth. That is not a readable page on iOS.
+
+## Do this instead
+
+1. Load the document content (from the branch they care about — usually `develop`).
+2. Create a **Cursor Canvas** (`WriteCanvas`) that renders the same substance (headings, tables, lists, code names). Follow the canvas skill (`cursor/canvas` components only).
+3. Reply with the canvas URL exactly as returned, e.g. `https://cursor.com/canvas/...` — that is the openable link.
+4. Optionally mention the repo path as source; canvas is the reader view.
+
+## Triggers (non-exhaustive)
+
+- “Give me a link Safari can open”
+- “Openable link” / “readable link” / “not as code on GitHub”
+- Mobile / iPhone / iOS viewing of a checked-in plan or HTML share doc
+- Any HTML under `Docs/` (or sibling email-share HTML) when they want to **view** it, not edit source
+
+## Do not
+
+- Treat `https://github.com/.../blob/...` as the openable answer when they asked to read the page
+- Rely on `htmlpreview.github.io` or public CDNs for **private** repos (they 404)
+- Paste a huge HTML source fence and call that the link
+- Put this playbook only in personal Cursor Settings — keep it in `.cursor/rules/openable-link-canvas.mdc` in **each** ElectraMet agent repo (PLC, HMI, electramet-cloud, graft, etc.) per `org-cursor-rules.mdc`
+
+## Related
+
+- Formatted email / paste-into-Mail HTML files: `email-html-delivery.mdc` / `formatted-documents.mdc` (file on disk + Select All → Copy). Canvas is for **openable viewer links**, not a second Mail paste format.
+- Agents still cannot write the iPhone system clipboard; canvas + long-press copy is the mobile path.
